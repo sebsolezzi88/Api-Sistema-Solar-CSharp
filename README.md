@@ -21,7 +21,7 @@ imágenes de cada planeta.
 
 ## 📸 Captura
 
-![Imagen sitio Principal Api](https://i.imgur.com/hBrEccn.png)
+![Imagen sitio Principal Api](https://i.imgur.com/tFmIahQ.png)
 
 
 ## 🔗 Endpoints disponibles
