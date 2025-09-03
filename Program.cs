@@ -1,3 +1,5 @@
+using Planets.DB;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -17,6 +19,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //Rutas
+app.MapGet("/planetas/all", () => PlanetasRepository.GetPlanetas());
 
 
 
