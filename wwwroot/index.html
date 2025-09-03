@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Sistema Solar</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-gradient-to-b from-black via-gray-900 to-indigo-950 text-gray-100 font-sans"
+  >
+    <!-- Header -->
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white shadow-lg"
+    >
+      <h1 class="text-3xl md:text-4xl font-bold text-center py-6">
+        🪐 API Sistema Solar 🔭
+      </h1>
+    </header>
+    <canvas id="stars" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Main -->
+    <main class="max-w-5xl mx-auto px-6 py-10">
+      <section class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-semibold text-yellow-400">
+          Bienvenido a la API Sistema Solar
+        </h2>
+        <p class="mt-4 text-lg text-gray-300 leading-relaxed">
+          ¡Hola! Bienvenido a esta API desarrollada con Javascript, tu puerta de
+          acceso rápida y sencilla a información detallada sobre los planetas
+          del sistema solar. Aquí podrás consultar propiedades como el nombre,
+          tipo, lunas y más.
+        </p>
+      </section>
+
+      <!-- Rutas -->
+      <section>
+        <h3
+          class="text-xl md:text-2xl font-bold text-center text-purple-400 mb-6"
+        >
+          🔗 Rutas de la API
+        </h3>
+        <ul class="space-y-6 text-lg">
+          <li
+            class="p-4 bg-gray-800/70 border border-indigo-700 rounded-xl shadow-md hover:shadow-xl transition"
+          >
+            <strong class="text-yellow-300">Todos los planetas:</strong><br />
+            <code class="text-indigo-400">
+              <a
+                href="/api/v1/planetas/all"
+                target="_blank"
+                class="hover:underline"
+              >
+                /api/v1/planetas/all
+              </a> </code
+            ><br />
+            Retorna todos los elementos en formato JSON.
+          </li>
+
+          <li
+            class="p-4 bg-gray-800/70 border border-indigo-700 rounded-xl shadow-md hover:shadow-xl transition"
+          >
+            <strong class="text-yellow-300">Buscar por nombre:</strong><br />
+            <code class="text-indigo-400">
+              <a
+                href="/api/v1/planeta/Júpiter"
+                target="_blank"
+                class="hover:underline"
+              >
+                /api/v1/planeta/Júpiter
+              </a> </code
+            ><br />
+            Reemplaza <code>Júpiter</code> por otro planeta.
+          </li>
+
+          <li
+            class="p-4 bg-gray-800/70 border border-indigo-700 rounded-xl shadow-md hover:shadow-xl transition"
+          >
+            <strong class="text-yellow-300">Buscar por nombre en latín:</strong
+            ><br />
+            <code class="text-indigo-400">
+              <a
+                href="/api/v1/planeta/latin/Neptunus"
+                target="_blank"
+                class="hover:underline"
+              >
+                /api/v1/planeta/latin/Neptunus
+              </a> </code
+            ><br />
+            Reemplaza <code>Neptunus</code> por otro nombre en latín.
+          </li>
+
+          <li
+            class="p-4 bg-gray-800/70 border border-indigo-700 rounded-xl shadow-md hover:shadow-xl transition"
+          >
+            <strong class="text-yellow-300">Buscar por tipo:</strong><br />
+            <code class="text-indigo-400">
+              <a
+                href="/api/v1/planetas/tipo/terrestre"
+                target="_blank"
+                class="hover:underline"
+              >
+                /api/v1/planetas/tipo/terrestre
+              </a> </code
+            ><br />
+            Ejemplo: <code>terrestre</code>, <code>gigante-gaseoso</code>,
+            <code>gigante-helado</code>.
+          </li>
+
+          <li
+            class="p-4 bg-gray-800/70 border border-indigo-700 rounded-xl shadow-md hover:shadow-xl transition"
+          >
+            <strong class="text-yellow-300"
+              >Buscar por cantidad de lunas:</strong
+            ><br />
+            <code class="text-indigo-400">
+              <a
+                href="/api/v1/planetas/lunas/0"
+                target="_blank"
+                class="hover:underline"
+              >
+                /api/v1/planetas/lunas/0
+              </a> </code
+            ><br />
+            Busca planetas con una cantidad mayor al valor ingresado.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white text-center py-6 mt-10 shadow-inner"
+    >
+      <p class="mb-2 text-lg">🪐 API Sistema Solar 🔭 | Proyecto con .NET C#</p>
+      <p class="mb-4">
+        Desarrollado por <strong>Sebastían Solezzi</strong> &copy; 2025
+      </p>
+      <a
+        href="https://github.com/sebsolezzi88/Express-Api-Elementos"
+        target="_blank"
+        class="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold shadow hover:bg-yellow-300 transition"
+      >
+        Ver en GitHub
+      </a>
+    </footer>
+    <script>
+      const canvas = document.getElementById("stars");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const stars = [];
+      for (let i = 0; i < 200; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          speed: Math.random() * 0.5 + 0.2,
+        });
+      }
+
+      function drawStars() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "white";
+        stars.forEach((star) => {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      function updateStars() {
+        stars.forEach((star) => {
+          star.y += star.speed;
+          if (star.y > canvas.height) {
+            star.y = 0;
+            star.x = Math.random() * canvas.width;
+          }
+        });
+      }
+
+      function animate() {
+        drawStars();
+        updateStars();
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
