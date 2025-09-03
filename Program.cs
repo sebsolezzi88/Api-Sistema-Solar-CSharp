@@ -19,8 +19,8 @@ if (app.Environment.IsDevelopment())
 }
 
 //Rutas
-app.MapGet("/planetas/all", () => PlanetasRepository.GetPlanetas());
-
+app.MapGet("/planetas/all", () => PlanetasRepository.GetPlanetas()); //Obtener todos los planetas
+app.MapGet("/planetas/lunas/{lunas}", (int lunas) => PlanetasRepository.GetPlanetasPorLunas(lunas)); //Obtener por cantidad de lunas mayores a lo ingresado
 
 
 app.UseHttpsRedirection(); //Redirige automáticamente de HTTP → HTTPS para mayor seguridad.
