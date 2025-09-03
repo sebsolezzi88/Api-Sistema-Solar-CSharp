@@ -19,10 +19,11 @@ if (app.Environment.IsDevelopment())
 }
 
 //Rutas
-app.MapGet("/planetas/all", () => PlanetasRepository.GetPlanetas()); //Obtener todos los planetas
-app.MapGet("/planetas/lunas/{lunas}", (int lunas) => PlanetasRepository.GetPlanetasPorLunas(lunas)); //Obtener por cantidad de lunas mayores a lo ingresado
-app.MapGet("/planetas/tipo/{tipo}", (string tipo) => PlanetasRepository.GetPlanetasPorTipo(tipo));//terrestre,gigante-terrestre gigante-helado 
-app.MapGet("/planeta/{nombre}", (string nombre) => PlanetasRepository.GetPlaneta(nombre));
+app.MapGet("/api/v1/planetas/all", () => PlanetasRepository.GetPlanetas()); //Obtener todos los planetas
+app.MapGet("/api/v1/planetas/lunas/{lunas}", (int lunas) => PlanetasRepository.GetPlanetasPorLunas(lunas)); //Obtener por cantidad de lunas mayores a lo ingresado
+app.MapGet("/api/v1/planetas/tipo/{tipo}", (string tipo) => PlanetasRepository.GetPlanetasPorTipo(tipo));//terrestre,gigante-terrestre gigante-helado 
+app.MapGet("/api/v1/planeta/latin/{nombreLatin}", (string nombreLatin) => PlanetasRepository.GetPlanetaLatin(nombreLatin)); //Obtener un planeta por su nombre en latin
+app.MapGet("/api/v1/planeta/{nombre}", (string nombre) => PlanetasRepository.GetPlaneta(nombre)); //Obtener un planeta por su nombre
 
 app.UseHttpsRedirection(); //Redirige automáticamente de HTTP → HTTPS para mayor seguridad.
 app.UseDefaultFiles(); // Busca index.html automáticamente
